@@ -1,5 +1,7 @@
 <script setup></script>
 
 <template>
-  <main>test</main>
+  <main>
+    <div class=" bg-red-400">teesda</div>
+  </main>
 </template>
