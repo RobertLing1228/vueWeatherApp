@@ -107,6 +107,7 @@
 
     <div
       class="flex items-center gap-2 py-12 text-white duration-150 cursor-pointer hover:text-red-500"
+      v-if="!route.query.preview"
       @click="removeCity"
     >
       <i class="fa-solid fa-trash"></i>
@@ -119,7 +120,6 @@
 import { toDegree } from "../composition/ToDegree.js";
 import axios from "axios";
 import { useRoute, useRouter } from "vue-router";
-
 
 const route = useRoute();
 const getWeatherData = async () => {
@@ -140,6 +140,8 @@ const getWeatherData = async () => {
       hour.currentTime = utc + 1000 * weatherData.data.timezone_offset;
     });
 
+    await new Promise((res) => setTimeout(res, 1000))
+
     return weatherData.data;
   } catch (err) {
     console.log(err);
@@ -150,8 +152,11 @@ const weatherData = await getWeatherData();
 const router = useRouter();
 const removeCity = () => {
   const cities = JSON.parse(localStorage.getItem("savedCities"));
+
   const updatedCities = cities.filter((city) => city.id !== route.query.id);
+  
   localStorage.setItem("savedCities", JSON.stringify(updatedCities));
+  
   router.push({
     name: "home",
   });
