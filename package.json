@@ -16,6 +16,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.5",
     "axios": "^1.6.2",
     "uid": "^2.0.2",
+    "unsplash-js": "^7.0.19",
     "vue": "^3.3.10",
     "vue-router": "^4.2.5"
   },
